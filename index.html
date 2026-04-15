@@ -58,7 +58,6 @@
         .book-info p { margin: 10px 0 0; font-size: 0.85rem; font-weight: 700; color: var(--primary); }
         .badge { font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; margin-top: 10px; display: inline-block; background: #f1f8e9; color: #558b2f; }
 
-        /* MODAL STYLES */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay.active { display: flex; opacity: 1; }
         .modal-content { background: white; border-radius: 24px; max-width: 800px; width: 100%; display: flex; position: relative; overflow: hidden; max-height: 90vh; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
@@ -69,8 +68,7 @@
         .modal-details { width: 60%; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; }
         .modal-summary { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; margin-top: 20px; flex-grow: 1; }
 
-        /* NEW SHOW MORE CREDITS STYLING */
-        .credits-toggle { font-size: 0.8rem; color: var(--primary); cursor: pointer; text-decoration: underline; margin-left: 10px; font-weight: 600; }
+        .credits-toggle { font-size: 0.8rem; color: var(--primary); cursor: pointer; text-decoration: underline; margin-left: 10px; font-weight: 600; display: none; }
         #mExtra { display: none; font-size: 0.85rem; color: var(--text-muted); background: #f8f9fa; padding: 12px; border-radius: 12px; margin-top: 10px; line-height: 1.4; border: 1px dashed #ddd; }
 
         @media (max-width: 768px) { 
@@ -186,7 +184,8 @@ function openModal(book) {
     const extra = document.getElementById('mExtra');
     const btn = document.getElementById('mToggleBtn');
     
-    if (book.extra_credits && book.extra_credits.length > 5) {
+    // GHOST FILTER LOGIC
+    if (book.extra_credits && book.extra_credits.trim().length > 0) {
         extra.innerText = book.extra_credits;
         extra.style.display = 'none';
         btn.style.display = 'inline';
