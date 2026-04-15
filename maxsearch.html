@@ -66,7 +66,7 @@
         .modal-img-container img { width: 100%; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         .modal-details { width: 60%; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; }
 
-        .credits-toggle { font-size: 0.8rem; color: var(--primary); cursor: pointer; text-decoration: underline; margin-left: 10px; font-weight: 600; }
+        .credits-toggle { font-size: 0.8rem; color: var(--primary); cursor: pointer; text-decoration: underline; margin-left: 10px; font-weight: 600; display: none; }
         #mExtra { display: none; font-size: 0.85rem; color: var(--text-muted); background: #f8f9fa; padding: 12px; border-radius: 12px; margin-top: 10px; line-height: 1.4; border: 1px dashed #ddd; }
 
         @media (max-width: 768px) { 
@@ -137,7 +137,7 @@ function openModal(book) {
     const extra = document.getElementById('mExtra');
     const btn = document.getElementById('mToggleBtn');
     
-    if (book.extra_credits && book.extra_credits.length > 5) {
+    if (book.extra_credits && book.extra_credits.trim().length > 0) {
         extra.innerText = book.extra_credits;
         extra.style.display = 'none';
         btn.style.display = 'inline';
